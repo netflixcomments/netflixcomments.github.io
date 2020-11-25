@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<body>
+    <input id="password" type="password" name="password" placeholder="Password">
+    <input class="video" id="video" type="hidden" name="video" placeholder="Video" visibility="hidden" value="">
+    <input class="comment" id="comment" type="hidden" name="comment" placeholder="Comment" visibility="hidden" value="">
+
+
+    <button onclick="return login()">Submit</button>
+
+    <script>
+        function login() {
+            const params = {
+                password: document.querySelector('#password').value,
+                video: document.querySelector('#video').value,
+                comment: document.querySelector('#comment').value
+            }
+
+            const http = new XMLHttpRequest()
+            http.open('DELETE', 'https://uzx8eevaii.execute-api.us-west-2.amazonaws.com/Prod/api/videos/removeComment')
+            http.setRequestHeader('Content-type', 'application/json')
+            http.send(JSON.stringify(params))
+            http.onload = function () {
+                alert(http.responseText)
+            }
+        }
+    </script>
+</body>
+</html>
